@@ -6,7 +6,9 @@ package ru.norbit.myswipelistdeleteitem;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -50,6 +52,19 @@ public class MyAdapter extends ArrayAdapter<String> {
 
         final String item = getItem(position);
         if (item != null) {
+            holder.swipeLayout.setSwipeListener(new SwipeRevealLayout.SimpleSwipeListener() {
+                @Override
+                public void onSlide(SwipeRevealLayout view, float slideOffset) {
+                    if (slideOffset >= 0.95) {
+                        view.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                remove(item);
+                            }
+                        }, 100);
+                    }
+                }
+            });
             binderHelper.bind(holder.swipeLayout, item);
 
             holder.textView.setText(item);

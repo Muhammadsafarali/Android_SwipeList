@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    app:dragEdge="right"
+    app:dragEdge="left"
     app:mode="same_level">
 
     <FrameLayout
         android:id="@+id/delete_layout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#ffcc0000">
 
